@@ -1,0 +1,31 @@
+<section>
+    <div class="div-geral-inicio">
+        <div class="div-img">
+            <img src="../../../../assets/img/favorito.png" alt="">
+        </div>
+        <div>
+            <!-- Lista de Cards -->
+            <div *ngIf="favoriteCards.length > 0; else semFavoritos" class="card-container">
+                <div *ngFor="let card of favoriteCards" class="card">
+                    <div class="card-header">
+                        <img class="card-image" [src]="card.image" alt="{{card.name}}">
+                        <mat-icon class="favorite-icon" [ngClass]="{ 'favorito': card.favorito }">
+                            favorite
+                        </mat-icon>
+                    </div>
+                    <div class="card-title">{{ card.name }}</div>
+                    <div class="card-content">
+                        <p>{{ card.species }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Mensagem quando não há cards -->
+            <ng-template #semFavoritos>
+                <div class="div-nada-foi-encontrado">
+                    <p class="p-nada-foi-encontrado">Parece que você ainda não tem favoritos</p>
+                    <p class="p-tente-realizar-busca">Volte à página inicial e escolha os melhores para você.</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</section>

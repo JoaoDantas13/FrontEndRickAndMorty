@@ -1,0 +1,42 @@
+<section>
+    <div class="div-container">
+        <div class="div-geral-inicio">
+            <div>
+                <img src="../../../../assets/img/inicio.png" alt="Ícone de início">
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Pesquisar</mat-label>
+                    <input matInput [(ngModel)]="pesquisa" (input)="filtrarCards()">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Lista de Cards -->
+        <div *ngIf="filteredCards.length > 0; else semResultados" class="div-geral-cards">
+            <div *ngFor="let card of filteredCards" class="card">
+              <div class="card-header">
+                <img class="card-image" [src]="card.image" alt="{{card.name}}">
+                <mat-icon 
+                  class="favorite-icon" 
+                  [ngClass]="{ 'favorito': card.favorito }" 
+                  (click)="toggleFavorito(card)">
+                  favorite
+                </mat-icon>
+              </div>
+              <div class="card-title">{{ card.name }}</div>
+              <div class="card-content">
+                <p>{{ card.species }}</p>
+              </div>
+            </div>
+          </div>
+          
+        <!-- Mensagem quando não há cards -->
+        <ng-template #semResultados>
+            <div class="div-nada-foi-encontrado">
+                <p class="p-nada-foi-encontrado">Nada foi encontrado</p>
+                <p class="p-tente-realizar-busca">Tente realizar uma nova busca.</p>
+            </div>
+        </ng-template>
+    </div>
+
+</section>
